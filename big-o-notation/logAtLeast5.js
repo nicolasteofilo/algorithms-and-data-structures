@@ -6,4 +6,4 @@ function logAtLeast5(n) {
 
 // O(n) -> bacause the n can be any number
 
-logAtLeast5(10);
+logAtLeast5(20);
