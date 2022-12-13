@@ -3,11 +3,13 @@
  * @param {number} k
  */
 function maxSubarraySum(nums, k) {
+  if(nums.length === 0 || k > nums.length) return null;
+
   let currentSum = 0;
   let maxSum = 0;
 
   for(let i = 0; i < k; i++) {
-    currentSum = currentSum + nums[i];
+    currentSum += nums[i];
   }
   maxSum = currentSum;
 
@@ -19,4 +21,4 @@ function maxSubarraySum(nums, k) {
   return maxSum
 }
 
-maxSubarraySum([100,200,300,400], 2) // 700
+console.log(maxSubarraySum([100,200,300,400], 2)) // 700
