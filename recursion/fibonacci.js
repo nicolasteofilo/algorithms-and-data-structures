@@ -4,4 +4,3 @@ function fib(num) {
 }
 
 console.log(fib(4)); // 3
-console.log(fib(5)); // 5
