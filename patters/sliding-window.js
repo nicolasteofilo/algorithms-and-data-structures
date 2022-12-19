@@ -11,9 +11,9 @@ function maxSubarraySum(nums, n) {
     maxSum += nums[i]
   }
   tempSum = maxSum;
-  console.log({ maxSum, tempSum });
 
   for(let i = n; i < nums.length; i++) {
+    console.log(i)
     tempSum = tempSum - nums[i - n] + nums[i];
     maxSum = Math.max(maxSum, tempSum)
   }
