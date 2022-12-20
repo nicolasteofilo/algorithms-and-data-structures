@@ -31,3 +31,20 @@ console.log(same([3, 3, 3, 4, 4], [16, 9, 9, 9, 16])); // true
 console.log(same([5, 5, 2, 3], [9, 25, 4, 25])); // true
 console.log(same([1, 2, 3], [1, 9])); // false
 console.log(same([1, 2, 1], [4, 4, 1])); // false (must be same frequency)
+
+
+
+
+function flatten(arr) {
+  let flatteneed = [];
+
+  for(let i = 0; i < arr.length; i ++) {
+    if (Array.isArray(arr[i])) {
+      flatteneed = flatteneed.concat(flatten(arr[i]))
+    } else {
+      flatteneed.push(arr[i]);
+    }
+  }
+
+  return flatteneed;
+}
