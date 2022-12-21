@@ -23,5 +23,9 @@ function linearSearch(arr, value) {
   return -1;
 }
 
+/*
+ * Time Complexity of Linear Search: O(n)
+*/
+
 console.log(linearSearch([5, 6, 7, 9, 58], 7)) // 2
 console.log(linearSearch([5, 6, 7, 9, 58], 12)) // -1
