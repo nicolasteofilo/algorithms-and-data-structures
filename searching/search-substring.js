@@ -19,7 +19,7 @@ function searchSubstring(long, short) {
 console.log(searchSubstring('ownomghtyuomg', 'omg')) // 2
 
 /*
-Pseudocode
+Pseudocodea
 1. Loop over the long string
 2. loop over th short string
 3. Se os caracteres não correspondem, parar o loop interno
