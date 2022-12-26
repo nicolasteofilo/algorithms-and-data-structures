@@ -20,7 +20,7 @@ function bubbleSort(arr) {
         }
       }
     }
-  if(noSwaps) break;
+    if(noSwaps) break;
   }
   return arr;
 };
