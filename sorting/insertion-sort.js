@@ -16,6 +16,7 @@ function insertionSort(arr) {
     }
     arr[j+ 1] = currentVal;
   }
+
   return arr;
 }
 
@@ -32,8 +33,6 @@ function insertionSortTwo(values) {
       j -= 1;
     }
   }
-
-
   return values;
 }
 
