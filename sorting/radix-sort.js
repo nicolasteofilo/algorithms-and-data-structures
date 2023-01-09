@@ -16,3 +16,16 @@ function getDigit(num, place) {
 function digitCount(num) {
   return Number(String(num).length);
 }
+
+/**
+ * @param {number[]} nums
+ */
+function mostDigits(nums) {
+  let maxLength = 0;
+
+  nums.forEach((num) => {
+    if (digitCount(num) > maxLength) maxLength = digitCount(num);
+  })
+
+  return maxLength;
+}
