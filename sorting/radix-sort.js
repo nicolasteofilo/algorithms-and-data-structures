@@ -1,7 +1,6 @@
 // HELPER METHODS
 
 /**
- *
  * @param {number} num
  * @param {number} place
  */
@@ -12,7 +11,6 @@ function getDigit(num, place) {
 }
 
 /**
- *
  * @param {number} num
  */
 function digitCount(num) {
