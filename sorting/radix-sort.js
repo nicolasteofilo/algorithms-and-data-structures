@@ -10,3 +10,11 @@ function getDigit(num, place) {
   if (position) return Number(position);
   return 0;
 }
+
+/**
+ *
+ * @param {number} num
+ */
+function digitCount(num) {
+  return Number(String(num).length);
+}
