@@ -44,4 +44,13 @@ class SinglyLinkedList {
     }
     return current;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+    const currrentHead = this.head;
+    this.head = currrentHead.next;
+    this.length--;
+    if (this.length < 1) this.tail = null;
+    return currrentHead.val;
+  }
 }
