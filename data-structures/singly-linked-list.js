@@ -103,4 +103,16 @@ class SinglyLinkedList {
     this.length++;
     return true
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return false;
+    if (index === this.length - 1) return !!this.pop(val);
+    if (index === 0) return !!this.shift(val);
+
+    const prevNode = this.get(index - 1);
+    const nodeToDelete = prevNode.next;
+    prevNode.next = nodeToDelete.next;
+    this.length--;
+    return nodeToDelete;
+  }
 }
