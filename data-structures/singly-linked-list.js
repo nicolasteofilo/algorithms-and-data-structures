@@ -51,7 +51,7 @@ class SinglyLinkedList {
     this.head = currrentHead.next;
     this.length--;
     if (this.length < 1) this.tail = null;
-    return currrentHead.val;
+    return currrentHead;
   }
 
   unshift(val) {
@@ -124,5 +124,13 @@ class SinglyLinkedList {
       current = current.next;
     }
     console.log(arr);
+    return arr;
+  }
+
+  reverse() {
+    let current = this.shift();
+    if (this.length > 1) this.reverse();
+    this.push(current.val);
+    return true
   }
 }
