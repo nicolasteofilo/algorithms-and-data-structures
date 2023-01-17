@@ -60,7 +60,7 @@ class SinglyLinkedList {
       this.head = newNode;
       this.tail = this.head;
     } else {
-      newHead.next = this.head;
+      newNode.next = this.head;
       this.head = newNode;
     }
 
@@ -87,5 +87,20 @@ class SinglyLinkedList {
     if (!node) return false;
     node.val = val;
     return true;
+  }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+
+    const prevNode = this.get(index - 1);
+    const newNode = new Node(val);
+    const afterNode = prevNode.next;
+    newNode.next = afterNode;
+    prevNode.next = newNode;
+
+    this.length++;
+    return true
   }
 }
