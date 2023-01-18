@@ -5,3 +5,11 @@ class Node {
     this.next = null;
   }
 }
+
+class DoublyLinkedList {
+  constructor() {
+    this.length = 0;
+    this.head = null;
+    this.tail = null;
+  }
+}
