@@ -1,5 +1,12 @@
 {
+  "name": "algorithms-and-data-structures",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:nicolasteofilo/algorithms-and-data-structures.git",
+  "author": "nicolasteofilo <nicolasteofilodecastro@gmail.com>",
+  "license": "MIT",
   "dependencies": {
+    "jest": "^29.3.1",
     "nodemon": "^2.0.20"
   }
 }
