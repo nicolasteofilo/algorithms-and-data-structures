@@ -78,4 +78,32 @@ class DoublyLinkedList {
     this.length++;
     return node;
   }
+
+  get(index) {
+    if(index < 0 || index >= this.length) return null;
+    const halfLength = Math.floor(this.length / 2)
+
+    let currentIndex;
+    let currentNode;
+
+    if(index <= halfLength) {
+      currentNode = this.head;
+      currentIndex = 0;
+      while(currentIndex !== index) {
+        currentNode = currentNode.next;
+        currentIndex++;
+      }
+    }
+
+    if(index > halfLength) {
+      currentIndex = this.length + -1;
+      currentNode = this.tail;
+      while(currentIndex !== index) {
+        currentNode = currentNode.prev;
+        currentIndex--;
+      }
+    }
+
+    return currentNode;
+  }
 }
