@@ -133,13 +133,17 @@ class DoublyLinkedList {
     if (index === 0) return !!this.shift();
     if (index === this.length - 1) return !!this.pop();
 
-    const prevNode = this.get(index - 1);
-    const afterNode = prevNode.next.next;
+    const removedNode = this.get(index);
+    const beforeNode = removedNode.prev;
+    const after = removedNode.next;
 
-    prevNode.next = afterNode;
-    afterNode.prev = prevNode;
+    beforeNode.next = after;
+    after.prev = beforeNode;
+
+    removedNode.next = null;
+    removedNode.prev = null;
 
     this.length--;
-    return true;
+    return removedNode;
   }
 }
