@@ -111,4 +111,20 @@ class DoublyLinkedList {
     const node = this.get(index);
     return node ? (node.val = val, true): false;
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+
+    const newNode = new Node(val);
+    const prevNode = this.get(index - 1);
+    const afterNode = prevNode.next;
+
+    prevNode.next = newNode, newNode.prev = prevNode;
+    afterNode.prev = newNode, newNode.next = afterNode;
+
+    this.length++;
+    return newNode
+  }
 }
