@@ -134,3 +134,5 @@ class SinglyLinkedList {
     return true
   }
 }
+
+module.exports = { SinglyLinkedList }

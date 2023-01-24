@@ -6,7 +6,6 @@
   "author": "nicolasteofilo <nicolasteofilodecastro@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jest": "^29.3.1",
     "nodemon": "^2.0.20"
   }
 }

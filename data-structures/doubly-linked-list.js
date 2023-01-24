@@ -96,7 +96,7 @@ class DoublyLinkedList {
     }
 
     if(index > halfLength) {
-      currentIndex = this.length + -1;
+      currentIndex = this.length -1;
       currentNode = this.tail;
       while(currentIndex !== index) {
         currentNode = currentNode.prev;
