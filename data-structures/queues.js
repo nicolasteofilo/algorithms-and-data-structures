@@ -42,4 +42,10 @@ class Queue {
 
 /*
 FIFO (first-in first-out), primeiro elemento a ser inserido, é o primeiro a ser retirado.
+
+Big O
+Insertion - O(1)
+Removal - O(1)
+Search - O(N)
+Access - O(N)
 */
