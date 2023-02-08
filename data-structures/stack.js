@@ -26,14 +26,15 @@ class Stack {
   }
 
   pop() {
-    if (this.size === 1) {
-      this.fist = null;
+    if (!this.fist) return null;
+    const tmp = this.fist;
+
+    if (this.fist === this.last) {
       this.last = null;
-    } else {
-      const tmp = this.fist.next;
-      this.fist = tmp;
     }
-    this.size--;
+    this.fist = this.fist.next;
+
+    return tmp.val;
   }
 }
 
@@ -43,3 +44,10 @@ stack.push('Ron');
 console.log(stack)
 stack.pop();
 console.log(stack)
+
+/*
+Insertion - O(1)
+Removal - O(1)
+Search - O(N)
+Access - O(N)
+*/
