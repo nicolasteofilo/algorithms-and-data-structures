@@ -46,6 +46,9 @@ stack.pop();
 console.log(stack)
 
 /*
+LIFO (last-in first-out), último elemento a ser inserido, é o primeiro a ser retirado.
+
+Big  O
 Insertion - O(1)
 Removal - O(1)
 Search - O(N)
