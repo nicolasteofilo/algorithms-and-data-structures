@@ -86,6 +86,18 @@ class BinarySearchTree {
     traverse(this.root);
     return data;
   }
+
+  depthFirstSearchPostOrder() { // visit all nodes on the left and then all nodes on the right
+    const data = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse((node.right));
+      if (node.value) data.push(node.value);
+    }
+
+    traverse(this.root);
+    return data;
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -97,3 +109,4 @@ tree.insert(8);
 tree.insert(20);
 
 console.log(tree.depthFirstSearchPreOrder());
+console.log(tree.depthFirstSearchPostOrder());
