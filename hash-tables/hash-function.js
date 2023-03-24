@@ -1,12 +1,14 @@
 function hash(key, arrayLen) {
   let total = 0;
-  for(let char of key) {
-    // map "a" to 1, "b" to 2, etc
-    const value = char.charCodeAt(0) - 96;
-    total += value;
+  let prime_number = 31;
+
+  for(let i = 0; i < Math.min(key.length, 100); i ++) {
+    let char = key[i];
+    let value = char.charCodeAt(0) - 96;
+    total = (total + prime_number + value) % arrayLen;
   }
 
-  return total % arrayLen;
+  return total;
 }
 
 console.log(hash("nicolas", 10), hash("andrea", 10))
