@@ -3,7 +3,7 @@ function hash(key, arrayLen) {
   let prime_number = 31;
 
   for(let i = 0; i < Math.min(key.length, 100); i ++) {
-    let char = key[i];
+  let char = key[i];
     let value = char.charCodeAt(0) - 96;
     total = (total + prime_number + value) % arrayLen;
   }
@@ -11,4 +11,4 @@ function hash(key, arrayLen) {
   return total;
 }
 
-console.log(hash("nicolas", 10), hash("andrea", 10))
+module.exports = { hash }
