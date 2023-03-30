@@ -35,23 +35,31 @@ class HashTable {
   }
 
   keys() {
-    const values = [];
+    const keysArr = [];
 
     this.keyMap.forEach((element) => {
-      element.forEach((subElement) => values.push(subElement[0]));
+      element.forEach((subElement) => {
+        if (!keysArr.includes(subElement[0])) {
+          keysArr.push(subElement[0]);
+        }
+      });
     });
 
-    return values;
+    return keysArr;
   }
 
   values() {
-    const values = [];
+    const valuesArr = [];
 
     this.keyMap.forEach((element) => {
-      element.forEach((subElement) => values.push(subElement[1]));
+      element.forEach((subElement) => {
+        if (!valuesArr.includes(subElement[1])) {
+          valuesArr.push(subElement[1]);
+        }
+      });
     });
 
-    return values;
+    return valuesArr;
   }
 }
 
