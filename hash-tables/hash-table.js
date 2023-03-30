@@ -1,4 +1,4 @@
-class HashTable {
+export class HashTable {
   constructor(size = 53) {
     this.keyMap = new Array(size);
   }
@@ -62,12 +62,3 @@ class HashTable {
     return valuesArr;
   }
 }
-
-const ht= new HashTable(4)
-ht.set('white', '#ffff');
-ht.set('black', '#0000');
-ht.set('yellow', '#ffff00');
-ht.set('red', '#ff0000');
-// console.log(ht.keyMap)
-console.log(ht.keys())
-console.log(ht.values());

@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class PriorityQueue {
+export class PriorityQueue {
   constructor() {
     this.values = [];
   }
@@ -62,10 +62,3 @@ class PriorityQueue {
   }
 
 }
-
-const priorityQueue = new PriorityQueue();
-
-priorityQueue.enqueue({ name: 'Nicolas' }, 2);
-priorityQueue.enqueue({ name: 'Andrea' }, 1);
-priorityQueue.enqueue({ name: 'Emily' }, 3);
-priorityQueue.enqueue({ name: 'Carlos' }, 4);
