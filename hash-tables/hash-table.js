@@ -33,6 +33,17 @@ class HashTable {
     }
     return undefined;
   }
+
+
+  keys() {
+    const values = [];
+
+    this.keyMap.forEach((element) => {
+      element.forEach((subElement) => values.push(subElement[0]));
+    })
+
+    return values;
+  }
 }
 
 const ht= new HashTable(4)
@@ -40,4 +51,5 @@ ht.set('white', '#ffff');
 ht.set('black', '#0000');
 ht.set('yellow', '#ffff00');
 ht.set('red', '#ff0000');
-console.log(ht.get('yellow'))
+// console.log(ht.keyMap)
+console.log(ht.keys())
