@@ -7,6 +7,13 @@ class Graph {
     if (!this.adjacencyList[vertexName]) this.adjacencyList[vertexName] = [];
   }
 
+  removeVertex(vertexName) {
+    for (const vertex in this.adjacencyList) {
+      this.removeEdge(vertexName, vertex);
+    }
+    delete this.adjacencyList[vertexName];
+  }
+
   addEdge(vertex1, vertex2) {
     if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
       this.adjacencyList[vertex1].push(vertex2);
@@ -16,8 +23,12 @@ class Graph {
 
   removeEdge(vertex1, vertex2) {
     if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
-      this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter((vertex) => vertex !== vertex2);
-      this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter((vertex) => vertex !== vertex1);
+      this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+        (vertex) => vertex !== vertex2
+      );
+      this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+        (vertex) => vertex !== vertex1
+      );
     }
   }
 }
@@ -29,6 +40,5 @@ g.addVertex("Rony");
 g.addEdge("Harry", "Rony");
 g.addEdge("Harry", "Hermione");
 console.log(g.adjacencyList);
-console.log('-------');
-g.removeEdge("Harry", "Rony");
+console.log(g.removeVertex("Hermione"));
 console.log(g.adjacencyList);
