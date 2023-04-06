@@ -31,14 +31,43 @@ class Graph {
       );
     }
   }
+
+  dfs(startVertex) {
+    const result = [];
+    const viseted = {};
+    const adjacencyList = this.adjacencyList;
+
+    const helper = vertex => {
+      if (!vertex) return null;
+      viseted[vertex] = true;
+      result.push(vertex);
+      this.adjacencyList[vertex].forEach((neighbor) => {
+        if (!viseted[neighbor]) {
+          return helper(neighbor);
+        }
+      });
+    }
+    helper(startVertex);
+
+    return result;
+  }
 }
 
 const g = new Graph();
-g.addVertex("Harry");
-g.addVertex("Hermione");
-g.addVertex("Rony");
-g.addEdge("Harry", "Rony");
-g.addEdge("Harry", "Hermione");
-console.log(g.adjacencyList);
-console.log(g.removeVertex("Hermione"));
-console.log(g.adjacencyList);
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
+
+console.log(g.adjacencyList, "\n--------");
+console.log(g.dfs("A"));
