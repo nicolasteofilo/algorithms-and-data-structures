@@ -35,7 +35,6 @@ class Graph {
   dfs(startVertex) {
     const result = [];
     const viseted = {};
-    const adjacencyList = this.adjacencyList;
 
     const helper = vertex => {
       if (!vertex) return null;
