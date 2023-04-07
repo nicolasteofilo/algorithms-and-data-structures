@@ -1,3 +1,5 @@
+const { Queue } = require('../data-structures/queues');
+
 const Colors = {
   WHITE: 0,
   GREY: 1,
@@ -76,10 +78,37 @@ class Graph {
     this.vertices.forEach(vertice => color[vertice] = Colors.WHITE);
     return color;
   }
+
+  bfs(startVertex, callback) {
+    if(!startVertex) startVertex = this.vertices[0];
+
+    const adjList = this.getAdjList();
+    const color = this.initializeColor();
+    const queue = new Queue();
+    queue.enqueue(startVertex);
+
+    while (queue.size) {
+      const u = queue.dequeue();
+      const neighbors = adjList[u];
+      color[u] = Colors.GREY;
+      console.log(`${u} => `, neighbors)
+      neighbors.forEach((neighbor) => {
+        if (color[neighbor] === Colors.WHITE) {
+          color[neighbor] = Colors.GREY;
+          queue.enqueue(neighbor);
+        }
+      })
+
+      color[u] = Colors.BLACK;
+      if (callback) {
+        callback(u);
+      }
+    }
+  }
 }
 
 const g = new Graph();
-const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'L'];
 myVertices.forEach(vertice => g.addVertex(vertice));
 
 g.addEdge('A', 'B');
@@ -91,6 +120,8 @@ g.addEdge("D", "G");
 g.addEdge("D", "H");
 g.addEdge("B", "E");
 g.addEdge("B", "F");
-g.addEdge("E", "I");
+g.addEdge("E", "L");
 
-console.log(g.toString());
+const resultBfs = []
+g.bfs("A", (vertex) => resultBfs.push(vertex));
+console.log(resultBfs)
