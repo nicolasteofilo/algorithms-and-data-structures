@@ -1,4 +1,4 @@
-const { Graph } = require("./graph");
+const { Graph, Colors } = require("./graph");
 const { Queue } = require("../data-structures/queues");
 
 const BFS = (graph, startVertex, callback) => {
@@ -42,19 +42,32 @@ const BFS = (graph, startVertex, callback) => {
   };
 };
 
-const g = new Graph();
-const myVertices = ["A", "B", "C", "D", "E", "F", "G", "H", "L"];
-myVertices.forEach((vertice) => g.addVertex(vertice));
+const findPathBFS = (graph, startVertex, endVertex) => {
+  const { predecessors } = BFS(graph, startVertex);
+  console.log({ predecessors });
+  const path = [];
+  let u = endVertex;
 
-g.addEdge("A", "B");
-g.addEdge("A", "C");
-g.addEdge("A", "D");
-g.addEdge("C", "D");
-g.addEdge("C", "G");
-g.addEdge("D", "G");
-g.addEdge("D", "H");
-g.addEdge("B", "E");
-g.addEdge("B", "F");
-g.addEdge("E", "L");
+  if (predecessors[u] === null) { // if endVertex is not ancestor of startVertex
+    return undefined;
+  }
 
-console.log(g.adjacencyList)
+  while (u) {
+    console.log(u)
+    path.unshift(u);
+    u = predecessors[u];
+  }
+
+  return path;
+};
+
+const graph = new Graph();
+
+["A", "B", "C", "D", "E", "F"].forEach((el) => graph.addVertex(el));
+graph.addEdge('A', 'B');
+graph.addEdge('A', 'C');
+graph.addEdge('B', 'D');
+graph.addEdge('C', 'E');
+graph.addEdge('D', 'E');
+
+findPathBFS(graph, 'A', 'E'); // ['A', 'C', 'E']

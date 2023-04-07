@@ -8,45 +8,26 @@ class Graph {
   constructor(isDirected = false) {
     this.isDirected = isDirected;
     this.vertices = [];
-    this.adjacencyList = {};
+    this.adjList = {};
   }
 
-  addVertex(vertexName) {
-    if (!this.vertices.includes(vertexName)) {
-      this.vertices.push(vertexName);
-      this.adjacencyList[vertexName] = [];
-    }
-  }
-
-  removeVertex(vertexName) {
-    for (const vertex in this.adjacencyList) {
-      this.removeEdge(vertexName, vertex);
-    }
-    delete this.adjacencyList[vertexName];
-  }
-
-  addEdge(v, w) {
+  addVertex(v) {
     if (!this.vertices.includes(v)) {
-      this.addVertex(v);
-    }
-    if (!this.vertices.includes(w)) {
-      this.vertices.push(w);
-    }
-    this.adjacencyList[v].push(w);
-    if (!this.isDirected) {
-      // if this graph is bidirectional
-      this.adjacencyList[w].push(v);
+      this.vertices.push(v);
+      this.adjList[v] = []; // initialize adjacency list with array as well;
     }
   }
 
-  removeEdge(vertex1, vertex2) {
-    if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
-      this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
-        (vertex) => vertex !== vertex2
-      );
-      this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
-        (vertex) => vertex !== vertex1
-      );
+  addEdge(a, b) {
+    if (!this.adjList[a]) {
+      this.addVertex(a);
+    }
+    if (!this.adjList[b]) {
+      this.addVertex(b);
+    }
+    this.adjList[a].push(b);
+    if (this.isDirected !== true) {
+      this.adjList[b].push(a);
     }
   }
 
@@ -55,14 +36,14 @@ class Graph {
   }
 
   getAdjList() {
-    return this.adjacencyList;
+    return this.adjList;
   }
 
   toString() {
     let s = "";
     for (let i = 0; i < this.vertices.length; i++) {
-      s += `${this.vertices[i]} ->  `;
-      const neighbors = this.adjacencyList[this.vertices[i]];
+      s += `${this.vertices[i]} -> `;
+      const neighbors = this.adjList[this.vertices[i]];
       for (let j = 0; j < neighbors.length; j++) {
         s += `${neighbors[j]} `;
       }
@@ -78,4 +59,4 @@ class Graph {
   }
 }
 
-module.exports = { Graph };
+module.exports = { Graph, Colors };
