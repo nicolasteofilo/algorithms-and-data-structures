@@ -1,5 +1,3 @@
-const { Stack } = require("../data-structures/stack.js");
-
 class Graph {
   constructor(isDirected = false) {
     this.isDirected = isDirected;
@@ -88,6 +86,14 @@ class Graph {
 
     return result;
   }
+
+  getVertices() {
+    return this.vertices;
+  }
+
+  getAdjList() {
+    return this.adjacencyList;
+  }
 }
 
 const g = new Graph();
@@ -106,6 +112,4 @@ g.addEdge("D", "E");
 g.addEdge("D", "F");
 g.addEdge("E", "F");
 
-console.log(g.adjacencyList, "\n--------");
-console.log(g.dfsRecursive("A"));
-console.log(g.dfsIterative("A"));
+console.log(g.getAdjList());
