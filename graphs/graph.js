@@ -1,10 +1,10 @@
-const { Queue } = require('../data-structures/queues');
+const { Queue } = require("../data-structures/queues");
 
 const Colors = {
   WHITE: 0,
   GREY: 1,
   BLACK: 2,
-}
+};
 
 class Graph {
   constructor(isDirected = false) {
@@ -61,57 +61,72 @@ class Graph {
   }
 
   toString() {
-    let s = '';
+    let s = "";
     for (let i = 0; i < this.vertices.length; i++) {
       s += `${this.vertices[i]} ->  `;
       const neighbors = this.adjacencyList[this.vertices[i]];
       for (let j = 0; j < neighbors.length; j++) {
         s += `${neighbors[j]} `;
       }
-      s += '\n'
+      s += "\n";
     }
     return s;
   }
 
   initializeColor() {
     const color = {};
-    this.vertices.forEach(vertice => color[vertice] = Colors.WHITE);
+    this.vertices.forEach((vertice) => (color[vertice] = Colors.WHITE));
     return color;
   }
 
   bfs(startVertex, callback) {
-    if(!startVertex) startVertex = this.vertices[0];
+    if (!startVertex) startVertex = this.vertices[0];
 
+    const vertices = this.getVertices();
     const adjList = this.getAdjList();
     const color = this.initializeColor();
     const queue = new Queue();
+    const distances = {};
+    const predecessors = {};
+
     queue.enqueue(startVertex);
+    vertices.forEach((vertice) => {
+      distances[vertice] = 0;
+      predecessors[vertice] = null;
+    });
 
     while (queue.size) {
       const u = queue.dequeue();
       const neighbors = adjList[u];
       color[u] = Colors.GREY;
-      console.log(`${u} => `, neighbors)
+      console.log(`${u} => `, neighbors);
       neighbors.forEach((neighbor) => {
         if (color[neighbor] === Colors.WHITE) {
           color[neighbor] = Colors.GREY;
+          distances[neighbor] = distances[u] + 1;
+          predecessors[neighbor] = u;
           queue.enqueue(neighbor);
         }
-      })
+      });
 
       color[u] = Colors.BLACK;
       if (callback) {
         callback(u);
       }
     }
+
+    return {
+      distances,
+      predecessors,
+    };
   }
 }
 
 const g = new Graph();
-const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'L'];
-myVertices.forEach(vertice => g.addVertex(vertice));
+const myVertices = ["A", "B", "C", "D", "E", "F", "G", "H", "L"];
+myVertices.forEach((vertice) => g.addVertex(vertice));
 
-g.addEdge('A', 'B');
+g.addEdge("A", "B");
 g.addEdge("A", "C");
 g.addEdge("A", "D");
 g.addEdge("C", "D");
@@ -122,6 +137,5 @@ g.addEdge("B", "E");
 g.addEdge("B", "F");
 g.addEdge("E", "L");
 
-const resultBfs = []
-g.bfs("A", (vertex) => resultBfs.push(vertex));
-console.log(resultBfs)
+const shortestPathB = g.bfs(myVertices[1]);
+console.log({ shortestPathB });
