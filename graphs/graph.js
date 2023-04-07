@@ -94,22 +94,34 @@ class Graph {
   getAdjList() {
     return this.adjacencyList;
   }
+
+  toString() {
+    let s = '';
+    for (let i = 0; i < this.vertices.length; i++) {
+      s += `${this.vertices[i]} -> `;
+      const neighbors = this.adjacencyList[this.vertices[i]];
+      for (let j = 0; j < neighbors.length; j++) {
+        s += `${neighbors[j]} `;
+      }
+      s += '\n'
+    }
+    return s;
+  }
 }
 
 const g = new Graph();
-g.addVertex("A");
-g.addVertex("B");
-g.addVertex("C");
-g.addVertex("D");
-g.addVertex("E");
-g.addVertex("F");
+const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+myVertices.forEach(vertice => g.addVertex(vertice));
 
-g.addEdge("A", "B");
+g.addEdge('A', 'B');
 g.addEdge("A", "C");
-g.addEdge("B", "D");
-g.addEdge("C", "E");
-g.addEdge("D", "E");
-g.addEdge("D", "F");
-g.addEdge("E", "F");
+g.addEdge("A", "D");
+g.addEdge("C", "D");
+g.addEdge("C", "G");
+g.addEdge("D", "G");
+g.addEdge("D", "H");
+g.addEdge("B", "E");
+g.addEdge("B", "F");
+g.addEdge("E", "I");
 
-console.log(g.getAdjList());
+console.log(g.toString());
