@@ -21,10 +21,17 @@ class Graph {
     delete this.adjacencyList[vertexName];
   }
 
-  addEdge(vertex1, vertex2) {
-    if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
-      this.adjacencyList[vertex1].push(vertex2);
-      this.adjacencyList[vertex2].push(vertex1);
+  addEdge(v, w) {
+    if (!this.vertices.includes(v)) {
+      this.addVertex(v);
+    }
+    if (!this.vertices.includes(w)) {
+      this.vertices.push(w);
+    }
+    this.adjacencyList[v].push(w);
+    if (!this.isDirected) {
+      // if this graph is bidirectional
+      this.adjacencyList[w].push(v);
     }
   }
 
