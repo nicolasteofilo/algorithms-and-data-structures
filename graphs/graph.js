@@ -1,10 +1,17 @@
+const { Stack } = require("../data-structures/stack.js");
+
 class Graph {
-  constructor() {
+  constructor(isDirected = false) {
+    this.isDirected = isDirected;
+    this.vertices = [];
     this.adjacencyList = {};
   }
 
   addVertex(vertexName) {
-    if (!this.adjacencyList[vertexName]) this.adjacencyList[vertexName] = [];
+    if (!this.vertices.includes(vertexName)) {
+      this.vertices.push(vertexName);
+      this.adjacencyList[vertexName] = [];
+    }
   }
 
   removeVertex(vertexName) {
@@ -32,11 +39,11 @@ class Graph {
     }
   }
 
-  dfs(startVertex) {
+  dfsRecursive(startVertex) {
     const result = [];
     const viseted = {};
 
-    const helper = vertex => {
+    const helper = (vertex) => {
       if (!vertex) return null;
       viseted[vertex] = true;
       result.push(vertex);
@@ -45,8 +52,32 @@ class Graph {
           return helper(neighbor);
         }
       });
-    }
+    };
     helper(startVertex);
+
+    return result;
+  }
+
+  dfsIterative(startVertex) {
+    let s = [];
+    const result = [];
+    const viseted = {};
+    let currentVertex;
+
+    s.push(startVertex);
+    viseted[startVertex] = true;
+
+    while (s.length) {
+      currentVertex = s.pop();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!viseted[neighbor]) {
+          viseted[neighbor] = true;
+          s.push(neighbor);
+        }
+      });
+    }
 
     return result;
   }
@@ -69,4 +100,5 @@ g.addEdge("D", "F");
 g.addEdge("E", "F");
 
 console.log(g.adjacencyList, "\n--------");
-console.log(g.dfs("A"));
+console.log(g.dfsRecursive("A"));
+console.log(g.dfsIterative("A"));
