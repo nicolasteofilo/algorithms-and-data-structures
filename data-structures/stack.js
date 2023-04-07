@@ -45,6 +45,8 @@ console.log(stack)
 stack.pop();
 console.log(stack)
 
+module.exports = { Stack };
+
 /*
 LIFO (last-in first-out), último elemento a ser inserido, é o primeiro a ser retirado.
 

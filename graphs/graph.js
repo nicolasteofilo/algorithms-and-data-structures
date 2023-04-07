@@ -1,3 +1,9 @@
+const Colors = {
+  WHITE: 0,
+  GREY: 1,
+  BLACK: 2,
+}
+
 class Graph {
   constructor(isDirected = false) {
     this.isDirected = isDirected;
@@ -44,49 +50,6 @@ class Graph {
     }
   }
 
-  dfsRecursive(startVertex) {
-    const result = [];
-    const viseted = {};
-
-    const helper = (vertex) => {
-      if (!vertex) return null;
-      viseted[vertex] = true;
-      result.push(vertex);
-      this.adjacencyList[vertex].forEach((neighbor) => {
-        if (!viseted[neighbor]) {
-          return helper(neighbor);
-        }
-      });
-    };
-    helper(startVertex);
-
-    return result;
-  }
-
-  dfsIterative(startVertex) {
-    let s = [];
-    const result = [];
-    const viseted = {};
-    let currentVertex;
-
-    s.push(startVertex);
-    viseted[startVertex] = true;
-
-    while (s.length) {
-      currentVertex = s.pop();
-      result.push(currentVertex);
-
-      this.adjacencyList[currentVertex].forEach((neighbor) => {
-        if (!viseted[neighbor]) {
-          viseted[neighbor] = true;
-          s.push(neighbor);
-        }
-      });
-    }
-
-    return result;
-  }
-
   getVertices() {
     return this.vertices;
   }
@@ -98,7 +61,7 @@ class Graph {
   toString() {
     let s = '';
     for (let i = 0; i < this.vertices.length; i++) {
-      s += `${this.vertices[i]} -> `;
+      s += `${this.vertices[i]} ->  `;
       const neighbors = this.adjacencyList[this.vertices[i]];
       for (let j = 0; j < neighbors.length; j++) {
         s += `${neighbors[j]} `;
@@ -106,6 +69,12 @@ class Graph {
       s += '\n'
     }
     return s;
+  }
+
+  initializeColor() {
+    const color = {};
+    this.vertices.forEach(vertice => color[vertice] = Colors.WHITE);
+    return color;
   }
 }
 
