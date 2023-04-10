@@ -6,11 +6,11 @@ class Node {
 }
 
 class Stack {
-    constructor() {
-        this.fist = null;
-        this.last = null;
-        this.size = 0;
-    }
+  constructor() {
+    this.fist = null;
+    this.last = null;
+    this.size = 0;
+  }
 
   push(val) {
     const newNode = new Node(val);
@@ -36,14 +36,11 @@ class Stack {
 
     return tmp.val;
   }
-}
 
-const stack = new Stack();
-stack.push('Harry');
-stack.push('Ron');
-console.log(stack)
-stack.pop();
-console.log(stack)
+  isEmpty() {
+    return this.size === 0;
+  }
+}
 
 module.exports = { Stack };
 

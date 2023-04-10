@@ -38,7 +38,13 @@ class Queue {
     this.size--;
     return tmp.val;
   }
+
+  isEmpty() {
+    return this.size === 0;
+  }
 }
+
+module.exports = { Queue }
 
 /*
 FIFO (first-in first-out), primeiro elemento a ser inserido, é o primeiro a ser retirado.
