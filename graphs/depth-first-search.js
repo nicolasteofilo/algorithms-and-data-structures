@@ -5,28 +5,77 @@ const depthFirstSearch = (graph, callback) => {
   const adjList = graph.getAdjList()
   const color = graph.initializeColor()
 
+  const initialDiscoveryTime = {}
+  const fineshedDiscoveryTime = {}
+  const predecessors = {}
+  const time = { count: 0 }
+
+  vertices.forEach((vertex) => {
+    initialDiscoveryTime[vertex] = 0
+    fineshedDiscoveryTime[vertex] = 0
+    predecessors[vertex] = null
+  })
+
   for (let i = 0; i < vertices.length; i++) {
     if (color[vertices[i]] === Colors.WHITE) {
-      depthFirstSearchVisit(vertices[i], color, adjList, callback)
+      depthFirstSearchVisit(
+        vertices[i],
+        color,
+        initialDiscoveryTime,
+        fineshedDiscoveryTime,
+        predecessors,
+        time,
+        adjList,
+        callback
+      )
     }
+  }
+
+  return {
+    initialDiscoveryTime,
+    fineshedDiscoveryTime,
+    predecessors,
   }
 }
 
-const depthFirstSearchVisit = (vertex, color, adjList, callback) => {
+const depthFirstSearchVisit = (
+  vertex,
+  color,
+  initialDiscoveryTime,
+  fineshedDiscoveryTime,
+  predecessors,
+  time,
+  adjList,
+  callback
+) => {
   color[vertex] = Colors.GREY
+  initialDiscoveryTime[vertex] = ++time.count
+
   if (callback) {
     callback(vertex)
   }
+
   const neighbors = adjList[vertex]
   for (let i = 0; i < neighbors.length; i++) {
     const w = neighbors[i]
 
     if (color[w] === Colors.WHITE) {
-      depthFirstSearchVisit(w, color, adjList, callback)
+      predecessors[w] = vertex
+      depthFirstSearchVisit(
+        w,
+        color,
+        initialDiscoveryTime,
+        fineshedDiscoveryTime,
+        predecessors,
+        time,
+        adjList,
+        callback
+      )
     }
   }
 
   color[vertex] = Colors.BLACK
+  fineshedDiscoveryTime[vertex] = ++time.count
 }
 
 const graph = new Graph()
@@ -44,4 +93,7 @@ graph.addEdge('D', 'H')
 graph.addEdge('B', 'E')
 graph.addEdge('B', 'F')
 graph.addEdge('E', 'I')
-depthFirstSearch(graph, (vertex) => console.log('Visited: ', vertex))
+
+console.log(
+  depthFirstSearch(graph, (vertex) => console.log('Visited: ', vertex))
+)
