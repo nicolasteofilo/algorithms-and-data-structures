@@ -79,7 +79,6 @@ const depthFirstSearchVisit = (
 }
 
 const graph = new Graph()
-
 const arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 
 arr.forEach((el) => graph.addVertex(el))
