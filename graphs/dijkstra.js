@@ -1,10 +1,39 @@
 const { WeigthGraph } = require('./weighted-graph');
 
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+
+  enqueue(value, priority) {
+    this.values.push({ value, priority });
+    this.sort();
+  }
+
+  dequeue() {
+    return this.values.shift();
+  }
+
+  sort() {
+    this.values.sort((a, b) => a.priority - b.priority);
+  }
+}
+
 class DijkstraAlgorithm extends WeigthGraph {
   constructor(isDirected = false) {
     super(isDirected);
     this.p = {};
     this.d = {};
+    this.visited = {};
+  }
+
+  shortestPath(vertex1, vertex2) {
+    this.vertices.forEach((vertex) => {
+      this.d[vertex] = Infinity / 2;
+      this.p[vertex] = -1;
+      this.visited[vertex] = false;
+    });
+    this.d[vertex1] = 0;
   }
 }
 
@@ -24,5 +53,7 @@ dj.addEdge("2", "4", 2);
 dj.addEdge("3", "4", 4);
 dj.addEdge("4", "5", 6);
 dj.addEdge("3", "5", 4);
+
+dj.shortestPath("0", "3")
 
 module.exports = { DijkstraAlgorithm };
