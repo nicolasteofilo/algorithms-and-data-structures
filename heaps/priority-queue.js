@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-export class PriorityQueue {
+class PriorityQueue {
   constructor() {
     this.values = [];
   }
@@ -54,11 +54,21 @@ export class PriorityQueue {
   }
 
   dequeue() {
-    const min = this.values[0];
-    const end = this.values.pop();
-    this.values[0] = end;
-    this.bubbleDown();
-    return min;
+    if (this.values.length === 1) {
+      const val = this.values.pop();
+      return val;
+    } else {
+      const min = this.values[0];
+      const end = this.values.pop();
+      this.values[0] = end;
+      this.bubbleDown();
+      return min;
+    }
   }
 
+  isEmpty() {
+    return this.values.length === 0;
+  }
 }
+
+module.exports = { PriorityQueue };
