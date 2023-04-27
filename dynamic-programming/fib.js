@@ -10,7 +10,25 @@ function fib(number) {
 Big O of old fibonacci sequence solution using recursive algorithm
 O(2^n) => complexity time grows very fast
 */
-const before = Date.now();
-console.log(fib(40));
-const time = Date.now() - before;
-console.log(`Took ${time}ms to run`);
+
+function fib2(number) {
+  const memo = [];
+  memo[0] = 1;
+  memo[1] = 1;
+  memo[2] = 1;
+
+  const recursiveFn = (n, memoization) => {
+    if (memoization[n] !== undefined) return memoization[n];
+    const res = recursiveFn(n - 1, memoization) + recursiveFn(n - 2, memoization);
+    memoization[n] = res;
+    return res;
+  };
+
+  const result = recursiveFn(number, memo);
+  return result;
+}
+
+/*
+Big O of new fibonacci sequence solution using memoization
+O(n)
+*/
